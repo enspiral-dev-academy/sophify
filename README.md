@@ -15,11 +15,13 @@ Sophify is a tool to help educators assemble small, independent pieces of curric
 ## Intended usage
 
 ```
-sophify init #create a sophify.json file and setup initial folder structures
+sophify init [type] #create a sophify.json file and setup initial folder structures - type defaults to course
 sophify build #build all the curriculum
 sophify add [segment-name] #add a new segment to the course (wraps npm install)
 sophify remove [segment-name] #remove a segment from the course (wraps npm uninstall)
 ```
+
+A segment can recursively build on top of other segments. From a students point of view a segment is an internal component that they don't see and they think about their learning in terms of courses.
 
 ## Key tech
 
@@ -32,8 +34,6 @@ sophify remove [segment-name] #remove a segment from the course (wraps npm unins
 ./student-guide/ #gitbook for student facing materials
 ./teaching-guide/ #gitbook for teacher facing materials
 ./slides/ #slide decks for the segments
-
-
 ```
 
 ## sophify.json
@@ -48,6 +48,12 @@ sophify remove [segment-name] #remove a segment from the course (wraps npm unins
 ### for a course
 ```
 {
-  "sophy-type": "course"
+  "sophify-type": "course",
+  "pre-requisites": {
+    "other-course": "https://github.com/enspiral-dev-academy/other-course"
+  },
+  "further-study": {
+    "harder-course": "https://github.com/enspiral-dev-academy/harder-course"
+  }
 }
 ```
